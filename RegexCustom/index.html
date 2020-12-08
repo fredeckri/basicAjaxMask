@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Regex - Teste</title>
+    <script src="js/jquery3-5-1.js"></script>
+    <script src="js/jquery.mask.js"></script>
+</head>
+
+<body>
+    <input type="text" class="placeholder date" maxlength="10" id="data">
+    <br><br>
+    <input type="text" class="money" maxlength="10" id="money">
+    <input type="text" class="phone_with_ddd" maxlength="15" id="money">
+    <input type="text" class="cep_with_callback" maxlength="11" pattern="/^[0-9]{8}$/">
+    <br>
+    <br>
+    <input id="numero01" name="numero01" type="text" maxlength="10" value="" required
+        placeholder="Entre no máximo 10 caracteresy" pattern="[0-9]{3,10}"
+        title='Somente números são aceitos mínimos 3 caracteres' />
+    <div id="result"></div>
+    <button id="botao1">Validar Data</button>
+
+</body>
+<script>
+    $(document).ready(function () {
+        $('.date').mask('00/00/0000');
+        $('.time').mask('00:00:00');
+        $('.date_time').mask('00/00/0000 00:00:00');
+        $('.cep').mask('00.000-000');
+        $('.phone').mask('0000-0000');
+        $('.phone_with_ddd').mask('(00) 00000-0000');
+        $('.phone_us').mask('(000) 000-0000');
+        $('.mixed').mask('AAA 000-S0S');
+        $('.cpf').mask('000.000.000-00', { reverse: true });
+        $('.cnpj').mask('00.000.000/0000-00', { reverse: true });
+        $('.money').mask('000.000.000.000.000,00', { reverse: true });
+        $('.money2').mask("#.##0,00", { reverse: true });
+        $('.ip_address').mask('0ZZ.0ZZ.0ZZ.0ZZ', {
+            translation: {
+                'Z': {
+                    pattern: /[0-9]/, optional: true
+                }
+            }
+        });
+        $('.ip_address').mask('099.099.099.099');
+        $('.percent').mask('##0,00%', { reverse: true });
+        $('.clear-if-not-match').mask("00/00/0000", { clearIfNotMatch: true });
+        $('.placeholder').mask("00/00/0000", { placeholder: "__/__/____" });
+        $('.fallback').mask("00r00r0000", {
+            translation: {
+                'r': {
+                    pattern: /[\/]/,
+                    fallback: '/'
+                },
+                placeholder: "__/__/____"
+            }
+        });
+        $('.selectonfocus').mask("00/00/0000", { selectOnFocus: true });
+
+
+        $("#money").bind('paste', function (e) {
+            e.preventDefault();
+            alert('Os valores devem ser digitados!');
+        });
+        //bind posso passar vários eventos -> click - mouseover - mouseout etccc...
+        $("#money").bind('copy', function (e) {
+            e.preventDefault();
+            let texto = $("#money").val();
+            texto = texto.replaceAll(/([,.-])/g, '')
+            alert(texto);
+
+        });
+
+        $("#data").bind('copy', function (e) {
+            e.preventDefault();
+            let texto = $("#data").val();
+            texto = texto.replaceAll(/(\/)/g, '')
+            console.log('Data: '+texto);
+            return texto;
+        });
+
+        // telefone /^1\d\d(\d\d)?$|^0800 ?\d{3}?\d{4}$|^(\(0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d\) ?|0?([1-9a-zA-Z][0-9a-zA-Z])?[1-9]\d[ .-]?)?(9|9[ .-])?[2-9]\d{3}[ .-]?\d{4}
+        // telefone 
+        //cep
+        var options = {
+            onComplete: function (cep) {
+                alert('CEP Completed!:' + cep);
+                //CEP ^[0-9]{8}$/
+            },
+            onKeyPress: function (cep, event, currentField, options) {
+                console.log('A key was pressed!:', cep, ' event: ', event,
+                    'currentField: ', currentField, ' options: ', options);
+            },
+            onChange: function (cep) {
+                console.log('cep changed! ', cep);
+            },
+            onInvalid: function (val, e, f, invalid, options) {
+                var error = invalid[0];
+                console.log("Digit: ", error.v, " is invalid for the position: ", error.p, ". We expect something like: ", error.e);
+            }
+        };
+
+        $('.cep_with_callback').mask('00000000', options);
+        //cep
+
+    });
+    function invertdata(value) {
+
+        let data, d, m, a, datainvertida, datainvertida2;
+        //let copy = document.querySelector('#data');
+        //data=(copy.value).replaceAll(/[/]/g,'')
+        value = value.replaceAll(/[/]/g,'')
+        d = value.substring(0, 2);
+        m = value.substring(2, 4);
+        a = value.substring(4, 9);
+        datainvertida = a + m + d;
+        datainvertida2 = d + m + a;
+        console.log(datainvertida);
+        console.log(datainvertida2);
+        //console.log(`${d}-${m}-${a}`)
+        //console.log(data);
+
+    }
+    var ini, fim;
+    function validaData(data) {
+
+
+        let resultado = [];
+        let target = `${data}`;
+        ini = performance.now(); //teste de performance
+
+        let expressao = /^(?:(?:31(\/|-|\.)(?:0?[13578]|1[02]))\1|(?:(?:29|30)(\/|-|\.)(?:0?[13-9]|1[0-2])\2))(?:(?:1[6-9]|[2-9]\d)?\d{2})$|^(?:29(\/|-|\.)0?2\3(?:(?:(?:1[6-9]|[2-9]\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))$|^(?:0?[1-9]|1\d|2[0-8])(\/|-|\.)(?:(?:0?[1-9])|(?:1[0-2]))\4(?:(?:1[6-9]|[2-9]\d)?\d{2})$/g;
+        resultado = expressao.exec(target);
+
+        fim = performance.now(); //teste de performance
+        console.log("Tempo de execução (ms) " + (fim - ini)); //teste de performance
+
+        if (resultado != null) {
+            invertdata(document.getElementById('data').value);
+            return true
+        }
+        else
+            return false
+    }
+
+    document.getElementById('botao1').addEventListener('click', function () {
+        console.log(validaData(document.getElementById('data').value));
+    });
+    document.getElementById('data').addEventListener('keyup', () => {
+        if ((document.getElementById('data').value).length == 10) {
+            if (validaData(document.getElementById('data').value) == false)
+                document.getElementById('data').value = '';
+        }
+        else return
+    });
+    /*
+   exec 	Um método RegExp  que execute uma pesquisa por uma correspondência em uma string. Retorna um array de informações.
+   test 	Um método RegExp que testa uma correspondência em uma string. Retorna true ou false.
+   match 	Um método String que executa uma pesquisa por uma correspondência em uma string. Retorna uma array de informações ou null caso não haja uma correspondência.
+   search 	Um método String que testa uma correspondência em uma string. Retorna o indice da correspondência ou -1 se o teste falhar.
+   replace 	Um método String que executa uma pesquisa por uma correspondência em uma string, e substitui a substring correspondênte por uma substring de substituição.
+   split 	Um método String  que usa uma expressão regular ou uma string fixa para quebrar uma string dentro de um array de substrings.
+*/
+
+
+
+</script>
+
+</html>

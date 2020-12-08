@@ -1,0 +1,20 @@
+
+              /*  const regex1 = /"{/gi;
+                const regex3 = /]},/gi;                
+                const regex2 = /'/gi;   
+                // expected output: true
+                //datajs = data.replaceAll(regex1,"},{");
+                //datajs = datajs.replaceAll(regex2,'"');
+    
+                var teste,test = [];
+                let obj = {};
+                teste = '';
+                var jsonj = JSON.stringify(teste);
+                
+                console.log(jsonj);
+                jsonj = jsonj.replaceAll(regex1,'"{','{');
+                test = jsonj;
+                
+                obj = JSON.parse(test); //funcionando
+                console.log(obj);
+                */

@@ -1,0 +1,18 @@
+                 dim curso,data
+                
+                    data=""
+                    
+                     do until rs.eof     
+                             data=data&"{"
+                            for each x in rs.fields
+                            data=data&"|"&x.name&"|:|"&x.value&"|,"
+                            Next
+                            data = data & "}"
+                     rs.MoveNext
+                     Loop
+                       'Loop
+                data=Replace(data,"|","""") 
+                data=Replace(data,",}","}")    
+                data=Replace(data,"}{","},{")
+                data="{""dados"":["&data&"]}" 
+                response.write(data)

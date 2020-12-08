@@ -1,0 +1,129 @@
+.pagina {
+    background: #f2f1f3;
+    font-family: 'PT Sans', sans-serif;
+    /* definicao das grids da pagina*/
+    display: grid;
+    width: 100%;
+    grid-template-areas: "cabecalho" "conteudo" "rodape";
+    grid-template-columns: auto;
+    grid-template-rows: auto auto auto;
+    /* porém se colocar auto o rodape vai para o final da pagina*/
+}
+
+.cabecalho {
+    /*background-color: aquamarine;*/
+    grid-area: cabecalho;
+}
+
+.conteudo {
+    /*background-color: chartreuse;*/
+    grid-area: conteudo;
+}
+
+.rodape {
+    /*background-color: chocolate;*/
+    grid-area: rodape;
+}
+
+.destaques {
+    display: grid;
+    margin-top: auto;
+    grid-template-columns: 5% 90% 5%;
+    grid-template-rows: 33.33% 33.33% 33.33%;
+    height: 100%;
+}
+
+.destaques__card {
+    display: grid;
+    grid-template-areas: "card-cabecalho" "card-conteudo" "card-rodape";
+    grid-template-rows: 15px auto auto;
+    /*conteudo automatico*/
+    padding: .35rem;
+    transition: 600ms;
+    opacity: 1;
+    box-shadow: 0;
+    
+}
+
+.destaques__card:nth-child(n) {
+    width: 100%;
+    grid-column: 2 / 3;
+    background-color: #ADCAC9;
+}
+
+.destaques__card:nth-child(2n) {
+    width: 100%;
+    background-color: #5472EC;
+}
+
+.destaques__card:hover {
+    cursor: pointer;
+    background-color: rgb(rgb(240, 222, 222), green, blue);
+    opacity: 0.85;
+    transition: 400ms;
+    box-shadow: 0 15px 20px rgba(0, 0, 0, 0.3);
+}
+
+.destaques__card {
+    display: grid;
+    color: #333333;
+}
+
+.destaques__card___titulo {
+    color: #333333;
+    font-size: 1.5rem;
+    text-align: center;
+    font-weight: 700;
+    text-transform: uppercase;
+    height: 100%;
+}
+
+.destaques__card___descricao {
+    font-weight: bold;
+    line-height: 1.2;
+    margin: 1rem 0;
+    letter-spacing: 1.5px;
+    text-align: justify;
+    justify-content: space-between;
+    overflow: -moz-hidden-unscrollable;
+    text-overflow: ellipsis;
+    line-height: 1.5em;
+    height: 100%;
+}
+
+.destaques__card___imagem {
+    float: left;
+    clear: left;
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    opacity: 0.7;
+    padding-right: 10px;
+}
+
+.destaques__card___imagem_rodape {
+    width: 100px;
+    height: 100px;
+    border-radius: 80%;
+    opacity: 0.8;
+    float: right;
+}
+
+.destaques__card___texto_rodape {
+    text-align: right;
+    opacity: 0.5;
+    padding-right: 10px;
+    color: black;
+    font-size: 12px;
+}
+
+.destaques__card___rodape:hover {
+    text-decoration: underline;
+}
+
+.destaques__card___rodape {
+    color: #333333;
+    font-size: 1.2rem;
+    text-align: center;
+    letter-spacing: 1.5;
+}

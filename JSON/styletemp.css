@@ -1,0 +1,41 @@
+#tabela{
+    font-family: "Trebuchet MS", Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+  }
+  
+  #tabela td, #tabela th {
+    border: 1px solid #ddd;
+    padding: 8px;
+  }
+  
+  #tabela tr:nth-child(even){background-color: #f2f2f2;}
+  
+  #tabela tr:hover {background-color: #ddd;}
+  
+  #tabela th {
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: #4CAF50;
+    color: white;
+  }
+
+  .botao {
+    width: 100px;
+    height: 50px;
+
+    border:none;
+    margin: 3px;
+    padding: 10px;
+    background-color: lightseagreen;
+    color: midnightblue;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+  .botao:hover {  
+    background-color: olive;
+    color: papayawhip;
+    }

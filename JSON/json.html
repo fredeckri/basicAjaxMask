@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+    <head>
+        <title> JSON CONFIGURAÇÕES BASICAS</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="styletemp.css" rel="stylesheet">
+        <script src="js/jquery-3.5.1.min.js"></script>
+        <script src="js/pgp.js"></script>
+        
+        <script src="https://code.highcharts.com/stock/highstock.js"></script>
+    </head>
+
+    <script>
+
+        //Construcao de objeto    
+        function Produto(produto,marca,tipo){
+            this.produto=produto;
+            this.marca=marca;
+            this.tipo=tipo;
+        }
+        //Construcao de objeto    
+  
+                
+        let myObj = { nome: "Frederick", idade: 33, cidade: "São Luis" };        
+        let meuObjetoJson = '{ "curso": "Asp Classic", "valor": 189.56, "cidade": "Brasília" }';        
+        
+        let objetoproduto = []; //modo de declaracao com boas praticas
+        objetoproduto[0] = new Produto ("Calculadora","HP","Calculadora Financeira");
+        // metodos de adicionar na coleção array - push                            
+        // metodos de adicionar na coleção array - indexof("elemento")                            
+        // metodos de adicionar na coleção array - shift primeiro elemento meuarray.shift();
+        
+    </script>
+    <body>
+    <h1 style="width: 100%; font-family: Verdana, Geneva, Tahoma, sans-serif;"> 
+    Json objetos configurações e rotinas
+    </h1>
+    <hr>
+    <a href="https://www.w3schools.com/xml/demo_post.asp">donalodsa</a>
+    <hr>
+    <label for="">Produto<br><input type="text" id="prod" name="produto" placeholder="Produto" value=""></label><br>
+    <label for="">Tipo<br><input type="text" id="tipo" name="tipo" placeholder="Tipo" value="" ></label><br>
+    <label for="">Marca<br><input type="text" id="marca" name="marca" placeholder="Marca" value="" ></label>
+    <br> <button id="botao" class="botao">Incluir Produto</button>
+    
+    <br> <button id="botaojson" class="botao">Imprimir Objeto PRODUTO</button>
+    <h4>Json sem conversão</h4>
+    <p id="json1"></p>
+    <hr>
+    <h4>Json convertido - Expressão regular </h4>
+    <p id="json2"></p>
+    <hr>
+    <h4>Json - Objeto Produto </h4>
+    <p id="json3"></p>
+    <table id="tabela">
+        <thead>
+            <tr>
+                <th> Produto </th>
+                <th> Tipo </th>
+                <th> Marca </th>
+            </tr>
+        </thead>
+            <tbody>
+            <tr>
+            <script>
+                var i;
+                for (i = 0; i < objetoproduto.length; i++) {
+                document.write(`<th>${objetoproduto[i].produto}</th>`);     
+                document.write(`<td>${objetoproduto[i].tipo}</td>`);
+                document.write(`<td>${objetoproduto[i].marca}</td>`);
+                document.write("</tr>");
+                } 
+            </script>        
+            
+            </tbody>
+    </table>
+    <hr>
+    <input type="text" id="nome" value ="Frederick"><input type="text" id="senha" value="123456">
+    
+    
+    <div name="grafico01" id="graf01"></div>
+
+    </body>
+
+    <script>
+        
+        let myJSON = JSON.stringify(myObj);
+        let myJSON1 = JSON.stringify(meuObjetoJson);   
+             
+            
+        console.log(myJSON1);
+        $(function(){
+            $("#json1").text(myJSON);
+            $("#json2").html(myJSON1);
+            $("#botao").click(function(){
+                objetoproduto.push(
+                                    new Produto (
+                                    $("#prod").val(),
+                                    $("#marca").val(),
+                                    $("#tipo").val())
+                                  );       
+                
+                $("<tr><td>"+
+                $("#prod").val()+
+                "</td><td>"+
+                $("#marca").val()+
+                "</td><td>"+
+                $("#tipo").val()+
+                "</td></tr>")
+                .appendTo("#tabela");
+                    $("#botaojson").click(function(){
+                        let j = JSON.stringify(objetoproduto);
+                        $("#json3").text(j);
+
+                    });
+                //console.log(objetoproduto);
+
+            }); 
+
+        });
+
+
+
+    </script>
+    <script src="/js/pgf.js"></script>
+
+</html>

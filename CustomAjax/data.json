@@ -1,0 +1,54 @@
+{
+        "pessoa": [
+                {
+                        "nome": "Maria",
+                        "idade": 43
+                },
+                {
+                        "nome": "Guilherme",
+                        "idade": 21
+                },
+                {
+                        "nome": "Frederick",
+                        "idade": 33
+                },
+                {
+                        "nome": "Madalena",
+                        "idade": 16
+                },
+                {
+                        "nome": "João",
+                        "idade": 53
+                },
+                {
+                        "nome": "João Carlos",
+                        "idade": 30
+                }
+        ],
+        "carros": [
+                {
+                        "nome": "GOL Trend",
+                        "modelo": 2011
+                },
+                {
+                        "nome": "Honda Civic",
+                        "modelo": 2013
+                },
+                {
+                        "nome": "Celta limited edition",
+                        "modelo": 2016
+                },
+                {
+                        "nome": "Logan",
+                        "modelo": 2018
+                },
+                {
+                        "nome": "Corolla",
+                        "modelo": 2012
+                },
+                {
+                        "nome": "Golf",
+                        "modelo": 2018
+                }
+        ]
+}
